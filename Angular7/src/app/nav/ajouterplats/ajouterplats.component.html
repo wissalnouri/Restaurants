@@ -1,0 +1,22 @@
+<form class="example-form" [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <input matInput placeholder="Ex. Pizza" formControlName="Nom">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" floatLabel="always" formControlName="Prix">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" class="example-right-align" placeholder="0"formControlName="Prix">
+    <span matPrefix>DT&nbsp;</span>
+    
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill" formControlName="Description">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="Description"></textarea>
+  </mat-form-field>
+
+  <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>

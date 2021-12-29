@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row" *ngIf="uService.roleMatch(['Agent'])">
+
+  <div class="col-1"></div>
+  <div class="col">
+    <button mat-raised-button color="primary" (click)="ajouterDialog()">Ajouter un Drink</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+      <th>nom</th>
+      <th>prix</th>
+      
+      <th>description</th>
+      <th>image</th>
+      <th>Supprimer</th>
+      <th>Modifier</th>
+      <th>Afficher</th>
+    </tr>
+    </thead>
+    <tbody><tr *ngFor="let drink of drinkDetails">
+      <td>{{drink.nom}}</td>
+      <td>{{drink.prix}}</td>
+      <td>{{drink.description}}</td>
+    
+        <td><img [src]="createImgPath(drink.image)" alt="profile picture" style="width:60px; height:60px;"></td>
+      <td><button type="button" class="btn btn-success" (click)="onDelete(drink.id)">Supprimetr</button></td>
+        <td><button type="button" class="btn btn-success"(click)="onSubmit(drink.id)">Modifeir</button></td>
+       <td><button type="button" class="btn btn-success" (click)="openDialog(drink.id)">Afficher</button></td>
+      
+    </tr>
+    </tbody>
+    
+    </table>
+  </div>
+
+  <div class="col">
+   
+      <div  *ngIf="drinkbyid">
+        <form [formGroup]="service.formModel" (submit)="onEdit(drinkbyid.id)">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" value="{{drinkbyid.nom}}" class="form-control" formControlName="Nom">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prix</label>
+            <input type="number" value="{{drinkbyid.prix}}" class="form-control" formControlName="Prix">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="3" value="{{drinkbyid.description}}"
+              formControlName="Description"></textarea>
+          </div>
+          <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+          <div class="col-auto">
+            <button mat-raised-button color="primary">Submit</button>
+          </div>
+        </form>
+  
+      </div>
+</div>
+</div>
+
+<div class="row" *ngIf="uService.roleMatch(['Customer'])">
+  <div class="col-4" *ngFor="let drink of drinkDetails">
+    <div class="card" style="width: 18rem;">
+      
+      <img [src]="createImgPath(drink.image)" alt="profile picture" class="card-img-top" width="250" height="300">
+      <div class="card-body">
+        <h5 class="card-title">{{drink.nom}}</h5>
+        <p class="card-text">{{drink.description}}</p>
+
+        <button mat-raised-button color="primary" (click)="openDialog(drink.id)">Afficher les Détails</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

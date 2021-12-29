@@ -1,0 +1,32 @@
+<div class="container " *ngIf="plat"> 
+  <mat-card>
+    <mat-card-title>{{plat.nom}}</mat-card-title>
+    
+    <mat-card-content>
+      <p>This card indeterminates progress bar.</p>
+      <p>Prix: {{plat.prix}} DT</p>
+      <p>{{plat.description}}</p>
+      <img [src]="createImgPath(plat.image)" alt="profile picture" width="300" height="300">
+    </mat-card-content>
+    <div *ngIf="uService.roleMatch(['Customer'])">
+    <mat-card-actions *ngIf="userDetails">
+      <p>Types des reservations:</p>
+      <form class="example-form" [formGroup]="LService.formModel" autocomplete="off" (submit)="subLivraison(userDetails.userName,userDetails.phoneNumber,plat.id,plat.nom)">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Adresse</mat-label>
+          <input matInput placeholder="Ex. 22 Rue de marceille" formControlName="Adresse">
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Livraison</button>
+      </form>
+      
+      <button mat-raised-button color="primary" (click)="checkout(plat.prix,userDetails.userName,userDetails.email,plat.id,plat.nom)">commande</button>
+      
+      
+    </mat-card-actions>
+  </div>
+  </mat-card>
+
+</div>
+
+
+

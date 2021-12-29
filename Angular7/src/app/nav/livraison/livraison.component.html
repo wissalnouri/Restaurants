@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">$(document).ready( function () {
+    $('#table_id').DataTable();
+} );</script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col">
+        <table id="table_id" class="table table-striped">
+          <thead>
+            <tr>
+              <th>nom</th>
+              <th>date</th>
+  
+              <th>Email Adresse</th>
+              <th>Plat</th>
+              <th>Adresse</th>
+             
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let L of livraison">
+              <td>{{L.nomUser}}</td>
+              <td>{{L.dateCommande}}</td>
+              <td>{{L.phoneNumber}}</td>
+              <td>{{L.platName}}</td>
+              <td>{{L.adresse}}</td>
+             
+              <td>
+  
+                <!-- Example single danger button -->
+ 
+  
+  
+              </td>
+            </tr>
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+
+

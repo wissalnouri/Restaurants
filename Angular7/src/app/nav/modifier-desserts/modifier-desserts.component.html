@@ -1,0 +1,21 @@
+<div class="container" *ngIf="dessert">
+  <form [formGroup]="service.formModel" (submit)="onEdit(dessert.id)">
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <input type="text" value="{{dessert.nom}}" class="form-control" formControlName="Nom">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Prix</label>
+      <input type="number" value="{{dessert.prix}}" class="form-control" formControlName="Prix">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" rows="3" value="{{dessert.description}}"
+        formControlName="Description"></textarea>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </div>
+  </form>
+</div>

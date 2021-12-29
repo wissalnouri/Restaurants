@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">$(document).ready( function () {
+    $('#table_id').DataTable();
+} );</script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col">
+        <table id="table_id" class="table table-striped">
+          <thead>
+            <tr>
+              <th>nom</th>
+              <th>date</th>
+  
+              <th>phone Number</th>
+              <th>Plat</th>
+              <th>status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let commande of commands">
+              <td>{{commande.nomUser}}</td>
+              <td>{{commande.dateCommande}}</td>
+              <td>{{commande.phoneNumber}}</td>
+              <td>{{commande.platName}}</td>
+              <td>{{commande.status}}</td>
+              <td>
+  
+                <!-- Example single danger button -->
+  <div class="btn-group">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Action
+    </button>
+    <ul class="dropdown-menu">
+      <li><a
+        (click)="toDo(commande.idCommande,commande.nomUser,commande.dateCommande,commande.phoneNumber,commande.platsId,commande.platName)"
+        class="dropdown-item">to do</a></li>
+    <li><a class="dropdown-item" (click)="inProg(commande.idCommande,commande.nomUser,commande.dateCommande,commande.phoneNumber,commande.platsId,commande.platName)">in progress </a></li>
+    <li><a class="dropdown-item" (click)="Done(commande.idCommande,commande.nomUser,commande.dateCommande,commande.phoneNumber,commande.platsId,commande.platName)">done</a></li>
+
+      
+     
+    </ul>
+  </div>
+  
+  
+              </td>
+            </tr>
+          </tbody>
+  
+        </table>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+
+

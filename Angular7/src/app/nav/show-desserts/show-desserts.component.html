@@ -1,0 +1,24 @@
+<div class="container " *ngIf="dessert"> 
+  <mat-card>
+    <mat-card-title>{{dessert.nom}}</mat-card-title>
+    
+    <mat-card-content>
+      <p>This card indeterminates progress bar.</p>
+      <p>Prix: {{dessert.prix}} DT</p>
+      <p>{{dessert.description}}</p>
+      <img [src]="createImgPath(dessert.image)" alt="profile picture" width="300" height="300">
+    </mat-card-content>
+    <div *ngIf="uService.roleMatch(['Customer'])">
+    <mat-card-actions *ngIf="userDetails">
+      <p>Types des reservations:</p>
+      
+      
+      <button mat-raised-button color="primary" (click)="subCommande(userDetails.userName,userDetails.phoneNumber,drink.id,drink.nom)">commande</button>
+      <button mat-raised-button color="primary">livraison</button>
+    </mat-card-actions>
+  </div>
+  </mat-card>
+
+</div>
+
+

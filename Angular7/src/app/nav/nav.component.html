@@ -1,0 +1,102 @@
+<mat-toolbar color="primary" *ngIf="service.roleMatch(['Customer'])">
+
+  <div class="mr-auto mt-2 mt-lg-0">
+    <span><img src="/assets/img/logo.png" height=30 width=41></span>
+    <a mat-button routerLink="/accueil" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
+    <a mat-button routerLink="/nav/profil" routerLinkActive="active"><span class="fa fa-info fa-lg"
+        routerLinkActive="active"></span> Profil</a>
+    <a mat-button routerLink="/nav/plats" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Menu</a>
+    <a mat-button routerLink="/nav/drinks" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Our
+      drinks</a>
+  </div>
+  <div class="my-2 my-sm-0">
+    <span class="flex-spacer"></span>
+    <a mat-raised-button color="warn" (click)="onLogout()"><span class="fa fa-sign-in fa-lg"></span> Logout</a>
+  </div>
+
+
+</mat-toolbar>
+
+
+    
+    
+ 
+
+
+
+
+
+<nav *ngIf="service.roleMatch(['Agent'])" class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/nav">
+                  <span data-feather="home"></span>
+                  Tableau de board <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nav/commands">
+                  <span data-feather="file"></span>
+                  Commandes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nav/livraison">
+                  <span data-feather="file"></span>
+                  Livraison
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nav/plats">
+                  <span data-feather="shopping-cart"></span>
+                  Plats
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nav/profil">
+                  <span data-feather="users"></span>
+                  Profil
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/nav/desserts">
+                  <span data-feather="bar-chart-2"></span>
+                  dessert
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  routerLink="/nav/drinks">
+                  <span data-feather="layers"></span>
+               drinks
+                </a>
+              </li>
+            </ul>
+
+           
+            <ul class="nav flex-column mb-2">
+              
+              
+              
+              <li class="nav-item">
+                <a class="nav-link" (click)="onLogout()">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span data-feather="file-text"></span>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+        </nav>
+
+<div class="container">
+
+<router-outlet></router-outlet>
+
+
+</div>
+
+
+
+

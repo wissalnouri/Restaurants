@@ -1,0 +1,78 @@
+<div class="container">
+
+
+  <div class="row" *ngIf="uService.roleMatch(['Agent'])">
+    <div class="col-1"></div>
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="ajouterDialog()">Ajouter un plat</button>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>nom</th>
+            <th>prix</th>
+
+            <th>description</th>
+            <th>image</th>
+            <th>Supprimer</th>
+            <th>Modifier</th>
+            <th>Afficher</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plat of platsDetalis">
+            <td>{{plat.nom}}</td>
+            <td>{{plat.prix}}</td>
+            <td>{{plat.description}}</td>
+            <td><img [src]="createImgPath(plat.image)" alt="profile picture" style="width:60px; height:60px;"></td>
+            <td><button mat-raised-button color="primary" (click)="onDelete(plat.id)">Supprimer</button></td>
+            <td><button mat-raised-button color="primary" (click)="onSubmit2(plat.id)">Modifeir</button></td>
+            <td><button mat-raised-button color="primary" (click)="openDialog(plat.id)">Afficher</button></td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    
+
+    <div class="col">
+      <div *ngIf="platsbyid2">
+        <form [formGroup]="service.formModel" (submit)="onEdit(platsbyid2.id)">
+          <div class="mb-3">
+            <label class="form-label">Nom</label>
+            <input type="text" value="{{platsbyid2.nom}}" class="form-control" formControlName="Nom">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prix</label>
+            <input type="number" value="{{platsbyid2.prix}}" class="form-control" formControlName="Prix">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="3" value="{{platsbyid2.description}}"
+              formControlName="Description"></textarea>
+          </div>
+          <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+          <div class="col-auto">
+            <button mat-raised-button color="primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="uService.roleMatch(['Customer'])">
+    <div class="col-4" *ngFor="let plat of platsDetalis">
+      <div class="card" style="width: 18rem;">
+        
+        <img [src]="createImgPath(plat.image)" alt="profile picture" class="card-img-top" width="250" height="300">
+        <div class="card-body">
+          <h5 class="card-title">{{plat.nom}}</h5>
+          <p class="card-text">{{plat.description}}</p>
+
+          <button mat-raised-button color="primary" (click)="openDialog(plat.id)">Afficher les Détails</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
